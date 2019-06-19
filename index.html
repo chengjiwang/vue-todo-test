@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <style>
+      .bg-todo{
+        background: #EFEFEF;
+      }
+    </style>
+    <title>To Do List</title>
+  </head>
+  <body>
+    <div id="app">
+      <section class="container bg-todo pb-3">
+        <h1>To Do List</h1>
+        <div class="input-group mb-3">
+          <input type="text" v-model="newtodo" class="form-control" placeholder="輸入代辦事項..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-success" @click="addTodo">新增</button>
+          </div>
+        </div>
+      </section>
+      <section class="container mt-3">
+        <div class="d-flex justify-content-between bg-todo p-3 border-bottom border-dark"
+         v-for="(item,key) in todoData">
+          
+          <input type="text" v-if="onEdit && item.id == cacheTodo.id" v-model="editText" @keyup.enter="updateTodo(item)">
+          <p v-else>{{ item.title }}</p>
+          <div>
+            <button class="btn btn-info mr-2" @click="editTodo(item,key)" >編輯</button>
+            <button class="btn btn-danger" @click="deleteTodo(key)">刪除</button>
+          </div>
+        </div>
+      </section>
+    </div>
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
